@@ -6,6 +6,9 @@
 #         self.right = right
 class Solution(object):
     def inorderTraversal(self, root):
+        if root is None:
+            return
+        
         result = []
         stack = []
         current = root
