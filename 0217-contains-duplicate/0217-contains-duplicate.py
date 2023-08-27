@@ -5,4 +5,5 @@ class Solution(object):
             if num in num_set:
                 return True
             num_set.add(num)
+            
         return False
