@@ -3,7 +3,5 @@ class Solution(object):
         for i in range(len(nums)):
             if nums[i] == target:
                 return i
-            else:
-                i+=1
                 
         return -1
