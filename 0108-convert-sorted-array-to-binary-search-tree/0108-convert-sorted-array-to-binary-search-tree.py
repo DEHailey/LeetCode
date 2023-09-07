@@ -1,5 +1,5 @@
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(self, val, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
@@ -11,7 +11,7 @@ class Solution:
                 return None
 
             middle = (left + right) // 2 
-            if (left + right) % 2:
+            if (left + right) % 2 == 1:
                 middle += 1 
 
             root = TreeNode(nums[middle])
@@ -20,3 +20,4 @@ class Solution:
             return root
 
         return helper(0, len(nums) - 1)
+        
