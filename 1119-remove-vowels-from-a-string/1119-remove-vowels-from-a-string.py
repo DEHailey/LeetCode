@@ -5,7 +5,7 @@ class Solution(object):
         ans = []
         
         if not s:
-            return ''
+            return None
         
         for i in range(s_l):
             if s[i] not in vowels:
