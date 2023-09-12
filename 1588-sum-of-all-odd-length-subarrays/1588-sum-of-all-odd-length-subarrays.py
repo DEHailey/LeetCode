@@ -4,12 +4,10 @@ class Solution(object):
         result = 0
     
         for i in range(n):
-            for j in range(i, n, 2):
+            for j in range(i,n,2):
                 result += sum(arr[i:j+1])
-    
-        return result
 
-            
+        return result
         
         
         
