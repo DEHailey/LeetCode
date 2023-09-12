@@ -1,11 +1,12 @@
-class Solution(object):
+class Solution:
     def longestOnes(self, nums, k):
-        left = 0
+        left=right=0    
         for right in range(len(nums)):
-            k -= 1 - nums[right]
+            if nums[right] == 0:
+                k -= 1
             if k < 0:
-                k += 1 - nums[left]
+                if nums[left] == 0:
+                    k += 1
                 left += 1
-                
-        return right - left + 1
-
+            
+        return right-left+1
