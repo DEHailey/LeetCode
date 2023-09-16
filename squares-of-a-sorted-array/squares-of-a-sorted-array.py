@@ -2,9 +2,11 @@ class Solution(object):
     def sortedSquares(self, nums):
         ans = []
         for n in nums:
-            sq = n*n
-            ans.append(sq)
+            val = n*n
+            ans.append(val)
             
-        return sorted(ans)
-            
+        ans.sort()
+        
+        return ans
+        
         
