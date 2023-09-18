@@ -1,11 +1,14 @@
 class Solution:
-    def slowestKey(self, releaseTimes, keysPressed):
-        k, t = keysPressed[0], releaseTimes[0]
+    def slowestKey(self, r, k):
+        times = {r[0]: [k[0]]}
         
-        for i in range(1, len(keysPressed)):
-            diff = releaseTimes[i] - releaseTimes[i-1] 
-            if diff > t or (diff == t and keysPressed[i] > k):
-                t = diff
-                k = keysPressed[i]
+        for i in range(1 , len(r)):
+            t = r[i] - r[i - 1]
+            if(t in times):
+                times[t].append(k[i])
+            else:
+                times[t] = [k[i]]
         
-        return k
+        keys = times[max(times.keys())]
+        
+        return max(keys)
