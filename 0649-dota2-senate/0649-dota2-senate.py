@@ -1,29 +1,26 @@
-class Solution(object):
+class Solution:
     def predictPartyVictory(self, senate):
-        radiant = []  # Radiant 파티 의원을 저장할 큐
-        dire = []     # Dire 파티 의원을 저장할 큐
+        queue = deque(senate)
 
-    # 의원을 Radiant 또는 Dire 큐로 나누기
-        for i, party in enumerate(senate):
-            if party == 'R':
-                radiant.append(i)
+        radiant_count = senate.count('R')
+        dire_count = len(senate) - radiant_count
+
+        radiant_banned = dire_banned = 0
+
+        while radiant_banned < radiant_count and dire_banned < dire_count:
+            senator = queue.popleft()
+
+            if senator == 'R':
+                if radiant_banned > 0:
+                    radiant_banned -= 1
+                else:
+                    queue.append('R')
+                    dire_banned += 1
             else:
-                dire.append(i)
+                if dire_banned > 0:
+                    dire_banned -= 1
+                else:
+                    queue.append('D')
+                    radiant_banned += 1
 
-        while radiant and dire:
-        # Radiant 큐와 Dire 큐의 맨 앞 의원을 추출
-            radiant_senator = radiant.pop(0)
-            dire_senator = dire.pop(0)
-
-        # 더 늦은 라운드에 투표권을 박탈한 경우, 다음 라운드로 다시 투표권을 부여
-            if radiant_senator < dire_senator:
-                radiant.append(radiant_senator + len(senate))
-            else:
-                dire.append(dire_senator + len(senate))
-
-        return "Radiant" if radiant else "Dire"
-
-        
-        
-            
-        
+        return 'Radiant' if dire_count == dire_banned else 'Dire'
