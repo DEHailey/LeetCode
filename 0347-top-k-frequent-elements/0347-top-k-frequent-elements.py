@@ -1,9 +1,14 @@
 class Solution(object):
     def topKFrequent(self, nums, k):
-        count = dict()
-        for n in nums:
-            count[n] = count.get(n,0) +1 
+        counts = collections.Counter(nums)
+        heap = []
+        
+        for key, val in counts.items():
+            heapq.heappush(heap, (val, key))
+            if len(heap) > k:
+                heapq.heappop(heap)
+                
+        return [pair[1] for pair in heap]
             
-        items = sorted(count.items(), key = lambda x:x[1] ,reverse = True)
-        return [item[0] for item in items[:k]]
+        
         
