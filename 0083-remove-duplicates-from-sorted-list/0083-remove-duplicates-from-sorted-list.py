@@ -1,17 +1,24 @@
-class Solution(object):
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
     def deleteDuplicates(self, head):
-        if head == None:
+        if not head or not head.next:
             return head
         
-        current = head.next
-        prev = head
+        slow = head
+        fast = head.next
         
-        while current != None:
-            if current.val == prev.val:
-                prev.next = current.next
-                current = current.next
+        while fast:
+            if slow.val == fast.val:
+                fast = fast.next
             else:
-                current = current.next
-                prev = prev.next
-                
+                slow.next = fast
+                slow = slow.next
+                fast = fast.next
+        
+        slow.next = None
+        
         return head
