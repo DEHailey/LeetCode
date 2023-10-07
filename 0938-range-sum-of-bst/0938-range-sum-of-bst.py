@@ -6,18 +6,22 @@
 #         self.right = right
 class Solution:
     def rangeSumBST(self, root, low, high):
-        if not root:
-            return 0
-        
+        stack = ([root])
         ans = 0
-        if low <= root.val <= high:
-            ans += root.val
+        
+        while stack:
+            root = stack.pop()
             
-        if low < root.val:
-            ans += self.rangeSumBST(root.left, low, high)
-        if root.val < high:
-            ans += self.rangeSumBST(root.right, low, high)
+            if low <= root.val <= high:
+                ans += root.val
             
+            if root.left and low < root.val:
+                stack.append(root.left)
+            if root.right and root.val < high:
+                stack.append(root.right)
+                
         return ans
             
+            
+        
         
