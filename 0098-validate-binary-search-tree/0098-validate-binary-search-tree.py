@@ -6,20 +6,21 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root):
-        def dfs(node, small, large):
-            if not node:
-                return True
+        stack = [(root, float('-inf'), float('inf'))]
             
-            if not small < node.val < large:
+        while stack:
+            node, small, large = stack.pop()
+            if not(small < node.val < large):
                 return False
             
-            left = dfs(node.left, small, node.val)
-            right = dfs(node.right, node.val, large)
+            if node.left:
+                stack.append((node.left, small, node.val))
+                
+            if node.right:
+                stack.append((node.right, node.val, large))
+                
+        return True
             
-            return left and right
-        
-        return dfs(root, float('-inf'), float('inf'))
-        
         
         
         
