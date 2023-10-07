@@ -13,9 +13,10 @@ class Solution:
         if low <= root.val <= high:
             ans += root.val
             
-        
-        ans += self.rangeSumBST(root.left, low, high)
-        ans += self.rangeSumBST(root.right, low, high)
+        if low < root.val:
+            ans += self.rangeSumBST(root.left, low, high)
+        if root.val < high:
+            ans += self.rangeSumBST(root.right, low, high)
             
         return ans
             
