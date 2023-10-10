@@ -1,11 +1,13 @@
 class Solution:
     def canVisitAllRooms(self, rooms):
-        def dfs(node):
+        seen = {0}
+        stack= [0]
+        
+        while stack:
+            node = stack.pop()
             for neighbor in rooms[node]:
                 if neighbor not in seen:
                     seen.add(neighbor)
-                    dfs(neighbor)
-                    
-        seen = {0}
-        dfs(0)
+                    stack.append(neighbor)
+        
         return len(seen) == len(rooms)
