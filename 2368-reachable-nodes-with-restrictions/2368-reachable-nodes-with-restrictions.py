@@ -9,14 +9,17 @@ class Solution:
         for node in restricted:
             seen[node] = True
             
-        def dfs(curr):
-            self.ans += 1
-            seen[curr] = True
+        ans = 0
+        queue = deque([0])
+        seen[0] = True
+        
+        while queue:
+            curr = queue.popleft()
+            ans += 1
             
             for nextN in neighbors[curr]:
                 if not seen[nextN]:
-                    dfs(nextN)
+                    seen[nextN] = True
+                    queue.append(nextN)
                     
-        self.ans = 0
-        dfs(0)
-        return self.ans
+        return ans
