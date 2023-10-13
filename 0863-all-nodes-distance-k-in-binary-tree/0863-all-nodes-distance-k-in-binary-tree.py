@@ -7,40 +7,28 @@
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        graph = {}
-        self.buildGraph(root, None, graph)
-        
-        queue = [(target,0)]
-        visited = set([target])
-        res = []
-        
-        while queue:
-            node, dist = queue.pop(0)
+        def dfs(node,parent):
+            if not node:
+                return
             
-            if dist == k:
-                res.append(node.val)
-                
-            if dist > k:
-                break
-                
-            for neigh in graph[node]:
-                if neigh not in visited:
-                    visited.add(neigh)
-                    queue.append((neigh,dist+1))
-                                    
-        return res
-    
-    def buildGraph(self, node, parent, graph):
-        if not node:
-            return
+            node.parent = parent
+            dfs(node.left, node)
+            dfs(node.right, node)
+            
+        dfs(root, None)
+        queue = deque([target])
+        seen = {target}
+        dist = 0
         
-        if node not in graph:
-            graph[node] = []
+        while queue and dist < k:
+            curr_l = len(queue)
+            for _ in range(curr_l):
+                node = queue.popleft()
+                for neigh in [node.left, node.right, node.parent]:
+                    if neigh and neigh not in seen:
+                        seen.add(neigh)
+                        queue.append(neigh)
+                        
+            dist += 1
             
-        if parent:
-            graph[node].append(parent)
-            graph[parent].append(node)
-            
-        self.buildGraph(node.left, node, graph)
-        self.buildGraph(node.right, node, graph)
-                    
+        return [node.val for node in queue]
