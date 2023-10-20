@@ -4,12 +4,11 @@ class Solution:
             return nums[0]
         
         n = len(nums)
-        dp = [0]*n
-        
-        dp[0] = nums[0]
-        dp[1] = max(nums[0],nums[1])
+       
+        back_two = nums[0]
+        back_one = max(nums[0],nums[1])
         
         for i in range(2,n):
-            dp[i] = max(dp[i-1],dp[i-2]+nums[i])
+            back_one, back_two = max(back_one, back_two + nums[i]), back_one
             
-        return dp[n-1]
+        return back_one
