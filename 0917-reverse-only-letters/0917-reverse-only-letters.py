@@ -1,11 +1,15 @@
 class Solution(object):
     def reverseOnlyLetters(self, s):
         letters = [c for c in s if c.isalpha()]
+        
         ans = []
-        for i in s:
-            if i.isalpha():
+        for c in s:
+            if c.isalpha():
                 ans.append(letters.pop())
-            else:
-                ans.append(i)
                 
-        return ''.join(ans)
+            else:
+                ans.append(c)
+                
+        return "".join(ans)
+        
+        
