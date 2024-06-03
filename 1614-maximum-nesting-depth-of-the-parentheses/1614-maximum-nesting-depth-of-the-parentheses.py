@@ -5,12 +5,14 @@ class Solution(object):
         :rtype: int
         """
         stack, res = [], 0
-	
+	    
         for c in s:
-            if c == "(":
+            if c == '(':
                 stack.append(c)
                 res = max(res, len(stack))
-            elif c == ")":
+            
+            elif c==')':
                 stack.pop()
-			
+                
         return res
+        
