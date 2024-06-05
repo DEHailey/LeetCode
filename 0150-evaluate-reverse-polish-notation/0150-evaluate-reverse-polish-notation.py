@@ -13,10 +13,7 @@ class Solution(object):
                 elif t == '*':
                     stk.append(a*b)
                 else:
-                    if a * b < 0 and a % b != 0:
-                        stk.append(a // b + 1)
-                    else:
-                        stk.append(a // b)                       
+                    stk.append(int(float(a)/b))                      
                         
             else:
                 stk.append(int(t))
