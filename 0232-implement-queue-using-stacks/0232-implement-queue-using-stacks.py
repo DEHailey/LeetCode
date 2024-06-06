@@ -26,10 +26,9 @@ class MyQueue(object):
         :rtype: int
         """
         if not self.s2:
-             while self.s1:
+            while self.s1:
                 self.s2.append(self.s1.pop())
         return self.s2[-1]
-        
 
     def empty(self):
         """
