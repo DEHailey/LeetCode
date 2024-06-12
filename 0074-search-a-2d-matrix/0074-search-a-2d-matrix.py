@@ -1,21 +1,23 @@
-class Solution(object):
-    def searchMatrix(self, matrix, target):
-        m, n = len(matrix), len(matrix[0])
-        left, right = 0, m*n-1
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m = len(matrix)
+        n = len(matrix[0])
+        t = m * n
+        l, r = 0, t-1
         
-        while left <= right:
-            mid = (left+right) // 2
-            row = mid // n
-            col = mid % n
-            num = matrix[row][col]
+        while l <= r:
+            mid = (l + r)//2
+            i = mid //n
+            j = mid % n
             
-            if num == target:
+            mid_num = matrix[i][j]
+            
+            if target == mid_num:
                 return True
-            elif num > target:
-                right = mid -1
-            elif num < target:
-                left = mid + 1
-        
-        return False
+            elif target > mid_num:
+                l = mid + 1
+            else:
+                r = mid - 1
                 
-        
+        return False
+            
