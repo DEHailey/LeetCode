@@ -1,20 +1,21 @@
 import math
-class Solution(object):
-    def minEatingSpeed(self, piles, h):
-        def check(k):
-            hours = 0
-            for bananas in piles:
-                hours += (bananas + k - 1) // k  
-            
-            return hours <= h
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l, r = 1, max(piles)
         
-        left = 1
-        right = max(piles)
-        while left < right:
-            mid = (left + right) // 2
-            if check(mid):
-                right = mid
+        while l < r:
+            mid = (l + r) // 2
+            hours = 0
+            
+            for p in piles:
+                hours += math.ceil(p / mid)
+                
+            if hours <= h:
+                r = mid
             else:
-                left = mid + 1
+                l = mid + 1
+        
+        return l
 
-        return left
+                
+        
