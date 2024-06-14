@@ -11,4 +11,4 @@ class Solution:
             else:
                 r = m
                 
-        return nums[r]
+        return nums[l]
