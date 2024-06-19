@@ -1,13 +1,25 @@
 class TimeMap:
 
     def __init__(self):
-        self.times = collections.defaultdict(list)
-        self.values = collections.defaultdict(list)
+        self.store = {}
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.times[key].append(timestamp)
-        self.values[key].append(value)
+        if key not in self.store:
+            self.store[key] = []
+        self.store[key].append([value, timestamp])
 
     def get(self, key: str, timestamp: int) -> str:
-        i = bisect.bisect(self.times[key], timestamp)
-        return self.values[key][i - 1] if i else ''
+        res = ""
+        values = self.store.get(key,[])
+        
+        l, r = 0, len(values) - 1
+        while l <= r:
+            m = (l+r)//2
+            if values[m][1] <= timestamp:
+                res = values[m][0]
+                l = m + 1
+            else:
+                r = m - 1
+                
+        
+        return res
