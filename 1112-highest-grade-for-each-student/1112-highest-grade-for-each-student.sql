@@ -12,10 +12,11 @@ where
         max(grade)
     from
         Enrollments
-    group by 
+    group by
         student_id
 )
 group by 
-    student_id
+    student_id,
+    grade
 order by 
     student_id asc
