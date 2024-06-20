@@ -16,7 +16,6 @@ where
         student_id
 )
 group by 
-    student_id, 
-    grade
+    student_id
 order by 
     student_id asc
