@@ -10,5 +10,5 @@ left join (
 ) as sub
 on w.product_id = sub.product_id
 group by warehouse_name
-order by warehouse_name asc
+
 
