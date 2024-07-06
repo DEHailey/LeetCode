@@ -4,7 +4,7 @@ from (
     select 
         p.project_id, 
         p.employee_id,
-        rank() over(partition by project_id order by experience_years desc) as rnk
+        dense_rank() over(partition by project_id order by experience_years desc) as rnk
     from Project p
     join Employee e
     on p.employee_id = e.employee_id
