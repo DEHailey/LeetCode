@@ -5,7 +5,7 @@ FROM (SELECT fail_date, ROW_NUMBER()OVER() AS rnk
       WHERE YEAR(fail_date)=2019)temp
 GROUP BY DATE_SUB(fail_date,INTERVAL rnk day)
 
-UNION 
+UNION ALL
 
 SELECT 'succeeded' AS period_state, MIN(success_date) AS start_date, MAX(success_date) AS end_date
 FROM (SELECT success_date, ROW_NUMBER() OVER() AS rnk
