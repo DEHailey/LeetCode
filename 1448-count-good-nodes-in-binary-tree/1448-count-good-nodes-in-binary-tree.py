@@ -5,23 +5,19 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def goodNodes(self, root):
-        if not root:
-            return 0
+    def goodNodes(self, root: TreeNode) -> int:
+        good_nodes = 0
+        stk = [(root, float('-inf'))]
         
-        stack = [(root, float("-inf"))]
-        ans = 0
-        
-        while stack:
-            node, max_so_far = stack.pop()
-            if node.val >= max_so_far:
-                ans += 1
+        while stk:
+            node, largest = stk.pop()
             
-            if node.left:
-                stack.append((node.left, max(max_so_far, node.val)))
-            if node.right:
-                stack.append((node.right, max(max_so_far, node.val)))
-        
-        return ans
-        
-        
+            if largest <= node.val:
+                good_nodes += 1
+                
+            largest = max(largest, node.val)
+            
+            if node.left: stk.append((node.left, largest))
+            if node.right: stk.append((node.right, largest))
+                
+        return good_nodes
