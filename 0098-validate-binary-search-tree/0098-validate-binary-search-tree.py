@@ -5,22 +5,14 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root):
-        stack = [(root, float('-inf'), float('inf'))]
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def is_valid(node, minn, maxx):
+            if not node:
+                return True
             
-        while stack:
-            node, small, large = stack.pop()
-            if not(small < node.val < large):
+            if node.val <= minn or node.val >= maxx:
                 return False
             
-            if node.left:
-                stack.append((node.left, small, node.val))
-                
-            if node.right:
-                stack.append((node.right, node.val, large))
-                
-        return True
-            
+            return is_valid(node.left, minn, node.val) and is_valid(node.right, node.val, maxx)
         
-        
-        
+        return is_valid(root, float('-inf'), float('inf'))
