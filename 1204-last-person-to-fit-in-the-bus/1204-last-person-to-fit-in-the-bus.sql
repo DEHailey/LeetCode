@@ -1,20 +1,20 @@
 # Write your MySQL query statement below
-
-WITH SortedQueue AS (
-    SELECT 
-        person_name, 
-        turn, 
+with cte as(
+    select
+        person_name,
+        turn,
         weight,
-        SUM(weight) OVER (ORDER BY turn) AS cumulative_weight
-    FROM 
+        sum(weight) over(order by turn) as cumulative_weight
+    from 
         Queue
 )
-SELECT 
+select
     person_name
-FROM 
-    SortedQueue
-WHERE 
+from 
+    cte
+where
     cumulative_weight <= 1000
-ORDER BY 
-    turn DESC
-LIMIT 1;
+order by 
+    turn desc
+limit 
+    1
