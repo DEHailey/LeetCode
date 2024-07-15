@@ -11,10 +11,14 @@ class Solution:
             next_largest = heapq.heappop(stones)
             
             add = largest - next_largest
-            heapq.heappush(stones,add)
-            
-            
-        return -stones[0]
+            if largest != next_largest:
+                heapq.heappush(stones, add)
+                
+        if len(stones) == 1:
+            return -heapq.heappop(stones)
+        else:
+            return 0
+        
             
         
         
