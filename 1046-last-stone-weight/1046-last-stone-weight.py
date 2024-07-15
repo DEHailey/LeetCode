@@ -15,7 +15,7 @@ class Solution:
                 heapq.heappush(stones, add)
                 
         if len(stones) == 1:
-            return -heapq.heappop(stones)
+            return -stones[0]
         else:
             return 0
         
