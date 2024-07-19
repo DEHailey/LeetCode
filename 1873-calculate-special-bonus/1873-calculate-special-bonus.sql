@@ -1,4 +1,6 @@
 # Write your MySQL query statement below
-select employee_id, if(employee_id % 2 = 1 and name not regexp '^M', salary,0) as bonus
+select 
+    employee_id,  
+    (case when name like 'M%' or employee_id % 2 = 0 then salary = 0 else salary end) as bonus
 from Employees
 order by employee_id
