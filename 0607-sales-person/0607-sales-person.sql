@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-select s.name as name
+select s.name
 from SalesPerson s
 where s.sales_id not in(
     select o.sales_id
