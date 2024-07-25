@@ -1,10 +1,7 @@
 # Write your MySQL query statement below
-select w.name as warehouse_name, sum(sub.cubic_ft * w.units) as volume
+select w.name as warehouse_name, 
+       sum((p.Width * p.Length * p.Height) * w.units) as volume
 from Warehouse w
-left join (
-    select p.product_id,
-           p.Width * p.Length * p.Height as cubic_ft
-    from Products p
-) as sub
-on w.product_id = sub.product_id
+left join Products p
+on p.product_id = w.product_id
 group by warehouse_name
