@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-select distinct l1.account_id 
+select distinct l1.account_id
 from LogInfo l1
 cross join LogInfo l2
 where l1.account_id = l2.account_id and
