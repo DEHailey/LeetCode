@@ -1,2 +1,2 @@
-# Algorithm-2
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+# Daily DSA practice
+Collection of **LeetCode** questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
