@@ -1,8 +1,9 @@
 # Write your MySQL query statement below
 select transaction_id
 from (
-    select *, dense_rank() over(partition by date(day) order by amount desc) as d
+    select transaction_id, day, amount,
+           rank() over(partition by day order by amount desc) as rnk
     from Transactions
-) temp
-where d = 1
-order by transaction_id asc
+)t
+where rnk = 1
+order by transaction_id
