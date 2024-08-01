@@ -1,16 +1,19 @@
 # Write your MySQL query statement below
-SELECT 'failed' AS period_state, MIN(fail_date) AS start_date, MAX(fail_date) AS end_date
-FROM (SELECT fail_date, ROW_NUMBER()OVER() AS rnk
-      FROM Failed
-      WHERE YEAR(fail_date)=2019)temp
-GROUP BY DATE_SUB(fail_date,INTERVAL rnk day)
+select 'failed' as period_state, min(fail_date) as start_date, max(fail_date) as end_date
+from (
+    select fail_date, row_number() over() as rnk
+    from Failed
+    where year(fail_date) = 2019
+)t
+group by date_sub(fail_date, interval rnk day)
 
-UNION ALL
+union all
 
-SELECT 'succeeded' AS period_state, MIN(success_date) AS start_date, MAX(success_date) AS end_date
-FROM (SELECT success_date, ROW_NUMBER() OVER() AS rnk
-      FROM Succeeded
-      WHERE YEAR(success_date)=2019)temp
-GROUP BY DATE_SUB(success_date, INTERVAL rnk day)
-
-ORDER BY start_date;
+select 'succeeded' as period_state, min(success_date) as start_date, max(success_date) as end_date
+from (
+    select success_date, row_number() over() as rnk
+    from Succeeded
+    where year(success_date) = 2019
+)t
+group by date_sub(success_date, interval rnk day)
+order by start_date
