@@ -12,7 +12,3 @@ with recursive cte as(
 select task_id, subtasks_count as subtask_id
 from cte
 where (task_id, subtasks_count) not in (select * from Executed)
-
-
-
-
