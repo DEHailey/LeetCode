@@ -8,7 +8,7 @@ class Solution:
             
         for i in range(len(t)):
             t_count[ord(t[i]) - ord('a')] += 1
-            
+        
         if s_count == t_count:
             return True
         else:
