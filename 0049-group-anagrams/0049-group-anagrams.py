@@ -11,4 +11,3 @@ class Solution:
             ans[key].append(s)
             
         return ans.values()
-        
