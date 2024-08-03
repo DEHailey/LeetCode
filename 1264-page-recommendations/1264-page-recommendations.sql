@@ -6,5 +6,5 @@ from (
     from Friendship
 )t
 join Likes
-on Likes.user_id = t.user_id
+on t.user_id = Likes.user_id
 where page_id not in(select page_id from Likes where user_id = 1)
