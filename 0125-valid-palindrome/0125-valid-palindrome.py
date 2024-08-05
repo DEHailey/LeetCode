@@ -1,23 +1,19 @@
-class Solution(object):
-    def isPalindrome(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
-    
-        head, tail = 0, len(s)-1
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        if not s:
+            return True
         
-        while head < tail:
-            while head < tail and not s[head].isalnum():
-                head += 1
-            while head < tail and not s[tail].isalnum():
-                tail -= 1
-                
-            if s[head].lower() !=s[tail].lower():
+        s = ''.join(char.lower() for char in s if char.isalnum())
+        
+        n = len(s)
+        l, r = 0, n - 1
+        
+        while l < r:
+            if s[l] == s[r]:
+                l += 1
+                r -= 1
+            else:
                 return False
             
-            head += 1
-            tail -= 1
-            
         return True
-    
+        
