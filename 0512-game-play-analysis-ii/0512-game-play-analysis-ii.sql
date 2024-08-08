@@ -1,5 +1,8 @@
 # Write your MySQL query statement below
-
-select distinct player_id, 
-       first_value(device_id) over(partition by player_id order by event_date) as device_id
-from Activity
+SELECT player_id, device_id
+FROM (
+    SELECT player_id, device_id,
+           ROW_NUMBER() OVER(PARTITION BY player_id ORDER BY event_date) AS rnk
+    FROM Activity
+)t
+WHERE rnk = 1
