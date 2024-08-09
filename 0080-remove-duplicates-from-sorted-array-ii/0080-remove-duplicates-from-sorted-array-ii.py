@@ -5,13 +5,12 @@ class Solution(object):
         :rtype: int
         """
         j = 1
-        count = 1
         n = len(nums)
+        count = 1
         
         for i in range(1, n):
             if nums[i-1] == nums[i]:
                 count += 1
-            
             else:
                 count = 1
                 
