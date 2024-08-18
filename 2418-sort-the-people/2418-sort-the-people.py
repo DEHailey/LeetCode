@@ -5,9 +5,10 @@ class Solution(object):
         :type heights: List[int]
         :rtype: List[str]
         """
-        people = list(zip(names, heights))
-        people_sorted = sorted(people, key = lambda x:x[1], reverse=True) 
         
-        res = [name for name, heights in people_sorted]
+        join = list(zip(heights,names))
+        join_sort = sorted(join, key=lambda x:x[0], reverse=True)
+        
+        res = [name for height, name in join_sort]
         
         return res
