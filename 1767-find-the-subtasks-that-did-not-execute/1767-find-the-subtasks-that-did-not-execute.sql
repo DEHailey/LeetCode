@@ -1,5 +1,4 @@
 # Write your MySQL query statement below
-
 with recursive cte as(
     select task_id, subtasks_count
     from Tasks
