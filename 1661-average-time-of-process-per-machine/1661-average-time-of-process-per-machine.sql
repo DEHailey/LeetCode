@@ -1,7 +1,5 @@
 # Write your MySQL query statement below
-SELECT 
-    machine_id, 
-    ROUND(SUM(CASE WHEN activity_type='start' THEN timestamp*-1 ELSE timestamp end) / COUNT(DISTINCT process_id),3) as processing_time
-FROM Activity
-GROUP BY machine_id
-
+select  machine_id, 
+        round(sum(case when activity_type = 'start' then timestamp*-1 else timestamp end) / count(distinct process_id),3) as processing_time
+from Activity
+group by machine_id
