@@ -4,11 +4,11 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
+        s = sorted(nums)
+        res = []
         
-        sorted_nums = sorted(nums)
-        result = []
-        
-        for i in range(0, len(sorted_nums) - 1, 2):
-            result.extend([sorted_nums[i + 1], sorted_nums[i]])
+        for i in range(0,len(nums)-1,2):
+            res.extend([s[i+1], s[i]])
             
-        return result
+        return res
+    
