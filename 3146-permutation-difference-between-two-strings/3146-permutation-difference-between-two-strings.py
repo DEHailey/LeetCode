@@ -5,8 +5,6 @@ class Solution(object):
         :type t: str
         :rtype: int
         """
+        pos = {ch:i for i, ch in enumerate(s)} 
         
-        pos = {ch : i for i, ch in enumerate(t)}
-        return sum([abs(i - pos[s[i]]) for i in range(len(s))])
-        
-        
+        return sum([abs(i-pos[t[i]]) for i in range(len(t))])
