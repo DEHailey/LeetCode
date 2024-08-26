@@ -5,6 +5,6 @@ class Solution(object):
         :type k: int
         :rtype: str
         """
-        dist = [i for i in arr if arr.count(i) == 1]
-	    
-        return "" if k > len(dist) else dist[k - 1]
+        dist = [c for c in arr if arr.count(c) == 1]
+        
+        return "" if k > len(dist) else dist[k-1]
