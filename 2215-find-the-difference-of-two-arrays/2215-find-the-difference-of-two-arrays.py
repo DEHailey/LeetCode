@@ -5,21 +5,6 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[List[int]]
         """
-        r1 = []
-        r2 = []
+        s1, s2 = set(nums1), set(nums2)
         
-        for num in nums1:
-            if num in nums2:
-                continue
-            else:
-                if num not in r1:
-                    r1.append(num)
-            
-        for num in nums2:
-            if num in nums1:
-                continue
-            else:
-                if num not in r2:
-                    r2.append(num)
-                
-        return [r1, r2]
+        return [list(s1 - s2), list(s2 - s1)]
