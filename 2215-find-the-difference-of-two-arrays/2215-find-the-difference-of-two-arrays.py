@@ -5,8 +5,6 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[List[int]]
         """
-       
-        
         r1 = []
         r2 = []
         
