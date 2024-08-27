@@ -11,11 +11,5 @@ class Solution(object):
                 return False
             else:
                 seen.add(num)
-                
+        
         return True
-        
-        
-        
-        
-        
-        
