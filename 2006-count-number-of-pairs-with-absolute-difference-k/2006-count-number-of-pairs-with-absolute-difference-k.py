@@ -5,12 +5,13 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        d = {}
+        arr = [0] * 201
         count = 0
         
-        for num in nums:
-            d[num] = d.get(num, 0) + 1
-            count += d.get(num - k, 0)
-            count += d.get(num + k, 0)
-                
+        for num in nums: 
+            arr[num] += 1
+        
+        for num in nums: 
+            count += arr[num + k]
+
         return count
