@@ -26,5 +26,5 @@ class Solution(object):
         for key in count:
             remain += [key] * count[key]
             
-        # merge 'res' + 'remain'
+        # merge 'res' & 'remain'
         return res + sorted(remain)
