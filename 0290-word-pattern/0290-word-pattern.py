@@ -8,16 +8,14 @@ class Solution(object):
             return False
                       
         for k, v in zip(pattern, words):
-            if k not in map_key:
-                if v in map_value:
-                    return False
-                else:
-                    map_key[k] = v
-                    map_value[v] = k
-            else:
-                if map_key[k] != v:
-                    return False
-                
+            if k in map_key and map_key[k] != v:
+                return False
+            if v in map_value and map_value[v] != k:
+                return False
+            
+            map_key[k] = v
+            map_value[v] = k
+        
         return True
     
     
